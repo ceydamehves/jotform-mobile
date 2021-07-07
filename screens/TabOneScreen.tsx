@@ -4,6 +4,10 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
+import {apiKey} from './secret.js';
+
+console.log(apiKey.jotform);
+
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
