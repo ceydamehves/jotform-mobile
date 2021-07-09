@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import { Text, View } from '../components/Themed';
 
@@ -27,7 +27,9 @@ export default function TabOneScreen( {navigation}: {navigation: any} ) {
         <FlatList
           data={["content"]}
           renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => navigation.navigate('FormScreen')}> 
               <Text style={styles.item}>{data[item].title}</Text>
+            </TouchableOpacity>
           )}
           />
       )} 
