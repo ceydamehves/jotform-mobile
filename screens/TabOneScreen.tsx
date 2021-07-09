@@ -1,36 +1,48 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { useEffect, useState } from 'react';
+import { StyleSheet, FlatList } from 'react-native';
+import axios from 'axios';
 import { Text, View } from '../components/Themed';
 
-import {apiKey} from './secret.js';
+import {apiKey} from '../secret.js';
 
-console.log(apiKey.jotform);
 
-export default function TabOneScreen() {
+export default function TabOneScreen( {navigation}: {navigation: any} ) {
+
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState({});
+  console.log(data)
+  
+  useEffect(() => {
+    axios('https://api.jotform.com/form/211803091239046?apiKey=' + apiKey.jotform)
+      .then(response => setData(response.data))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, [1]);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+    <View style={{ flex: 1 }}>
+      {isLoading ? <Text>Loading...</Text> : 
+      (
+        <FlatList
+          data={["content"]}
+          renderItem={({ item }) => (
+            /* <TouchableOpacity onPress={() => navigation.navigate('FormScreen')}> */
+              <Text style={styles.item}>{data[item].title}</Text>
+          )}
+          />
+      )} 
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  item:{
+    alignSelf:'center',
+    marginTop:20,
+    marginHorizontal:10,
+    padding:30,
+    backgroundColor:'yellow',
+    fontSize:20
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+})
