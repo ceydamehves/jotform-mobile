@@ -4,7 +4,7 @@ import { StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import { Text, View } from '../components/Themed';
 
-import {apiKey} from '../secret.js';
+import {apiKey} from '../secret';
 
 
 export default function TabOneScreen( {navigation}: {navigation: any} ) {
