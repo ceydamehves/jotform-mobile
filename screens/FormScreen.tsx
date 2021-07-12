@@ -4,8 +4,9 @@ import { Button, Alert } from 'react-native';
 import axios from 'axios';
 import { Text, View } from '../components/Themed';
 
-import {apiKey} from '../secret.js';
+import {apiKey} from '../secret';
 
+import { Video } from 'expo-av';
 
 export default function FormScreen( ) {
 
@@ -35,6 +36,13 @@ export default function FormScreen( ) {
               title={data['content']["1"]["options"]}
               color="#f194ff"
               onPress={() => Alert.alert('pressed')}
+          />
+          <Video
+            source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+            shouldPlay
+            isLooping
+            resizeMode="cover"
+            style={{ width:300, height: 300 }}
           />
         </View>
       )} 
