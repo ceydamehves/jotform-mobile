@@ -35,19 +35,19 @@ export default function FormScreen( ) {
             resizeMode="cover"
             style={styles.backgroundVideo}
           />
-          <Text style={styles.title}>{data['content']["1"]["text"]}</Text>
+          <Text style={styles.title}>{data['content']["1"]["text"]}.</Text>
           
           <TouchableOpacity
             style={styles.button}
             onPress={() => Alert.alert('pressed')}>
               <Text style={styles.choice}>A</Text>
-            <Text style={styles.buttonText}>{data['content']["1"]["options"]}</Text>
+            <Text style={styles.buttonText}>{data['content']["1"]["options"].split('|')[0]}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
             onPress={() => Alert.alert('pressed')}>
             <Text style={styles.choice}>B</Text>
-            <Text style={styles.buttonText}>{data['content']["1"]["options"]}</Text>
+            <Text style={styles.buttonText}>{data['content']["1"]["options"].split('|')[1]}</Text>
           </TouchableOpacity>
           
         </View>
