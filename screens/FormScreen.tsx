@@ -29,7 +29,7 @@ export default function FormScreen( ) {
         <View style={{ flex:1 }}>
           
           <Video
-            source={{ uri: 'https://www.w3schools.com/html/mov_bbb.mp4' }}
+            source={{ uri: data['content']["1"]["description"].toString() }} 
             shouldPlay
             isLooping
             resizeMode="cover"
