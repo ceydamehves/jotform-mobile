@@ -63,7 +63,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="FormScreen"
         component={FormScreen}
-        options={{ headerTitle: 'Form Title' }}
+        options={{ headerTitle: '' }}
       />
     </TabOneStack.Navigator>
   );
