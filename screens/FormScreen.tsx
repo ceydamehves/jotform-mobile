@@ -1,64 +1,19 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { Alert, TouchableOpacity, TextInput} from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { Text, View } from '../components/Themed';
-import { styles } from '../styles/questionStyles'; 
-
 import {apiKey} from '../secret';
-
-import { Video } from 'expo-av';
+import ControlRadio from './questions/ControlRadio';
+import ControlTextBox from './questions/ControlTextBox';
+import ControlTextArea from './questions/ControlTextArea';
+import ControlCheckBox from './questions/ControlCheckBox';
 
 const questionBuilders: {[index: string]: any} = {
-    "control_radio": (c: any) =>  (
-      <View>
-            <Video
-              source={{ uri: c["description"].toString() }} 
-              shouldPlay
-              isLooping
-              resizeMode="cover"
-              style={styles.backgroundVideo}
-            />
-  <Text style={styles.title}>{c["text"]}.</Text>
-  
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => Alert.alert('pressed')}>
-      <Text style={styles.choice}>A</Text>
-    <Text style={styles.buttonText}>{c["options"].split('|')[0]}</Text>
-  </TouchableOpacity>
-  <TouchableOpacity
-    style={styles.button}
-    onPress={() => Alert.alert('pressed')}>
-    <Text style={styles.choice}>B</Text>
-    <Text style={styles.buttonText}>{c["options"].split('|')[1]}</Text>
-  </TouchableOpacity>
-  </View>
-  ),
-    "control_textbox": (c: any) => (
-    <View>
-      <Video
-      source={{ uri: c["description"].toString() }} 
-      shouldPlay
-      isLooping
-      resizeMode="cover"
-      style={styles.backgroundVideo}
-    /><Text style={styles.title}>{c["text"]}.</Text>
-    </View>),
-    "control_textarea": (c: any) => (<View><Video
-      source={{ uri: c["description"].toString() }} 
-      shouldPlay
-      isLooping
-      resizeMode="cover"
-      style={styles.backgroundVideo}
-    /><Text style={styles.title}>{c["text"]}.</Text></View>),
-    "control_checkbox": (c: any) => (<View><Video
-      source={{ uri: c["description"].toString() }} 
-      shouldPlay
-      isLooping
-      resizeMode="cover"
-      style={styles.backgroundVideo}
-    /><Text style={styles.title}>{c["text"]}.</Text></View>)
+    "control_radio": (c: any) =>  (<ControlRadio c={c}/>),
+    "control_textbox": (c: any) => (<ControlTextBox c={c}/>),
+    "control_textarea": (c: any) => (<ControlTextArea c={c}/>),
+    "control_checkbox": (c: any) => (<ControlCheckBox c={c}/>)
 }
 
 export default function FirstQuestion( {navigation}: {navigation: any} ) {
