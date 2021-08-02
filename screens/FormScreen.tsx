@@ -21,7 +21,6 @@ export default function FirstQuestion( {navigation}: {navigation: any} ) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<{[index: string]:any}>({});
   const [currrentQuestion, setCurrentQuestion] = useState<number>(1);
-
   
   useEffect(() => {
     axios('https://api.jotform.com/form/211803091239046/questions?apiKey=' + apiKey.jotform)
@@ -29,23 +28,24 @@ export default function FirstQuestion( {navigation}: {navigation: any} ) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, [1]);
-  console.log(data)
+
 
   function nextQuestion(){
     var tempCQuestion = currrentQuestion
-    var last: number = parseInt(Object.keys(data['content'])[Object.keys(data['content']).length - 1])
-    // question id problem solution.
+    var lastQuestion: number = parseInt(Object.keys(data['content'])[Object.keys(data['content']).length - 1])
+    // question id problem solution.(if it is not in order :: 1 -> 3)
     do {
       tempCQuestion = tempCQuestion + 1;
-    }while(data['content'][(tempCQuestion).toString()] === undefined && tempCQuestion <= last)
+    }while(data['content'][(tempCQuestion).toString()] === undefined && tempCQuestion <= lastQuestion)
     
-    if(tempCQuestion > last){
+    if(tempCQuestion > lastQuestion){
       // there is no next question
       return
     }
     setCurrentQuestion(tempCQuestion)
   }
 
+  
   return (
     <View style={{ flex: 1 }}>
       {isLoading ? <Text>Loading...</Text> : 

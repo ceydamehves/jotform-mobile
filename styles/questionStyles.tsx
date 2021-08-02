@@ -45,5 +45,10 @@ export const styles = StyleSheet.create({
         width:25,
         height:25,
         fontSize:16
+      },
+      shortInput: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
       }
 });

@@ -1,12 +1,33 @@
-import * as React from 'react';
+import * as React from 'react'
+import {Component}  from 'react'
 import { Alert, TouchableOpacity} from 'react-native';
 import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
-
 import { styles } from '../../styles/questionStyles'; 
+import SelectMultiple from 'react-native-select-multiple';
+import { useState } from 'react';
+
 
 export default function ControlCheckBox(props: any) {
+  
   const {c} = props
+
+  /* var choiceCount: number = parseInt(c["spreadCols"]) 
+  var arr=[]
+  for (let x= 0; x<=choiceCount + 1; x++){   
+    //reach the variable from outside the loop.
+    arr.push(x);    
+  }
+   */
+
+  const fruits = [    
+    { label: c["options"].split('|')[0], value: '0' },   
+    { label: c["options"].split('|')[1], value: '1' }, 
+    { label: c["options"].split('|')[2], value: '2' },
+    { label: c["options"].split('|')[3], value: '3' },
+  ]
+  const [selectedFruits, onSelectionsChange] = useState([]);
+    
     return(
     <View>
       <Video
@@ -15,7 +36,12 @@ export default function ControlCheckBox(props: any) {
       isLooping
       resizeMode="cover"
       style={styles.backgroundVideo}
-      /><Text style={styles.title}>{c["text"]}.</Text>
+      />
+      <Text style={styles.title}>{c["text"]}.</Text>
+    <SelectMultiple
+          items={fruits}
+          selectedItems={selectedFruits}
+          onSelectionsChange={onSelectionsChange} />
     </View>
     )
 };
