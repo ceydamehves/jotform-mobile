@@ -20,14 +20,17 @@ export default function ControlCheckBox(props: any) {
   }
    */
 
-  const fruits = [    
+  const options = [    
     { label: c["options"].split('|')[0], value: '0' },   
     { label: c["options"].split('|')[1], value: '1' }, 
     { label: c["options"].split('|')[2], value: '2' },
     { label: c["options"].split('|')[3], value: '3' },
   ]
-  const [selectedFruits, onSelectionsChange] = useState([]);
-    
+
+  const [selectedOptions, onSelectionsChange] = useState([]);
+  var selectedArray = selectedOptions
+  console.log(selectedArray)
+
     return(
     <View>
       <Video
@@ -38,10 +41,10 @@ export default function ControlCheckBox(props: any) {
       style={styles.backgroundVideo}
       />
       <Text style={styles.title}>{c["text"]}.</Text>
-    <SelectMultiple
-          items={fruits}
-          selectedItems={selectedFruits}
-          onSelectionsChange={onSelectionsChange} />
+      <SelectMultiple
+            items={options}
+            selectedItems={selectedArray}
+            onSelectionsChange={onSelectionsChange}/>
     </View>
     )
 };
