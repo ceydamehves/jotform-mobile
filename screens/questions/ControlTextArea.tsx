@@ -4,23 +4,13 @@ import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 
 import { styles } from '../../styles/questionStyles'; 
+import { useState } from 'react';
 
-
-
-export default function ControlTextBox(props: any) {
+export default function ControlTextArea(props: any) {
   const {c} = props
 
-  const MultilineTextInput = (props: any) => {
-    return (
-      <TextInput
-        {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-        editable
-        maxLength={40}
-      />
-    );
-  }
-    const [value, onChangeText] = React.useState("");
-
+  const [text, changeText] = useState('');
+  
     return(
     <View>
       <Video
@@ -31,13 +21,15 @@ export default function ControlTextBox(props: any) {
       style={styles.backgroundVideo}
       /><Text style={styles.title}>{c["text"]}.</Text>
 
-    <MultilineTextInput
-        style={{borderColor:'black', borderWidth:2}}
+      <TextInput
+        style={styles.longInput}
         multiline
-        numberOfLines={4}
-        onChangeText={(text: any) => onChangeText(text)}
-        value={value}
+        maxLength={100}
+        placeholder='Enter your answer.'
+        onChangeText={(val) => changeText(val)}
       />
     </View>
     )
+    
 };
+

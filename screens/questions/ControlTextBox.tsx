@@ -4,10 +4,13 @@ import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 
 import { styles } from '../../styles/questionStyles'; 
+import { useState } from 'react';
 
 export default function ControlTextBox(props: any) {
   const {c} = props
-  const [text, onChangeText] = React.useState("");
+
+  const [text, changeText] = useState('');
+  
     return(
     <View>
       <Video
@@ -17,11 +20,14 @@ export default function ControlTextBox(props: any) {
       resizeMode="cover"
       style={styles.backgroundVideo}
       /><Text style={styles.title}>{c["text"]}.</Text>
+
       <TextInput
         style={styles.shortInput}
-        onChangeText={onChangeText}
-        value={text}
+        maxLength={50}
+        placeholder='Enter your answer.'
+        onChangeText={(val) => changeText(val)}
       />
     </View>
     )
+    
 };

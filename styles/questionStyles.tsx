@@ -50,5 +50,10 @@ export const styles = StyleSheet.create({
         height: 40,
         margin: 12,
         borderWidth: 1,
+      },
+      longInput: {
+        height: 60,
+        margin: 12,
+        borderWidth: 1,
       }
 });
