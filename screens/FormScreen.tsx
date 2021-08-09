@@ -28,7 +28,7 @@ export default function FirstQuestion( {navigation}: {navigation: any} ) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, [1]);
-
+console.log(data)
 
   function nextQuestion(){
     var tempCQuestion = currrentQuestion
@@ -45,16 +45,15 @@ export default function FirstQuestion( {navigation}: {navigation: any} ) {
     setCurrentQuestion(tempCQuestion)
   }
 
-  
   return (
     <View style={{ flex: 1 }}>
       {isLoading ? <Text>Loading...</Text> : 
       (
         <View style={{ flex:1 }}>   
           {(questionBuilders[data['content'][currrentQuestion.toString()]["type"]])(data['content'][currrentQuestion.toString()])}
-          <TouchableOpacity onPress={nextQuestion}>
+          <TouchableOpacity style={{marginTop:20}} onPress={nextQuestion}>
             <Text>NEXT BUTTON</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>          
         </View>
       )} 
     </View>

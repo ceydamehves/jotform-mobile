@@ -10,7 +10,7 @@ export default function ControlTextArea(props: any) {
   const {c} = props
 
   const [text, changeText] = useState('');
-  
+
     return(
     <View>
       <Video
@@ -23,7 +23,8 @@ export default function ControlTextArea(props: any) {
 
       <TextInput
         style={styles.longInput}
-        multiline
+        multiline={true}
+        numberOfLines={4}
         maxLength={100}
         placeholder='Enter your answer.'
         onChangeText={(val) => changeText(val)}
@@ -32,4 +33,3 @@ export default function ControlTextArea(props: any) {
     )
     
 };
-
