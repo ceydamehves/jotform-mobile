@@ -9,6 +9,10 @@ import ControlTextBox from './questions/ControlTextBox';
 import ControlTextArea from './questions/ControlTextArea';
 import ControlCheckBox from './questions/ControlCheckBox';
 
+
+import { useSelector, useDispatch } from 'react-redux';
+import { increment,decrement } from './actions';
+
 const questionBuilders: {[index: string]: any} = {
     "control_radio": (c: any) =>  (<ControlRadio c={c}/>),
     "control_textbox": (c: any) => (<ControlTextBox c={c}/>),
@@ -29,6 +33,9 @@ export default function FirstQuestion( {navigation}: {navigation: any} ) {
       .finally(() => setLoading(false));
   }, [1]);
 console.log(data)
+
+const counter = useSelector((state: any) => state.counter);
+const dispatch = useDispatch();
 
   function nextQuestion(){
     var tempCQuestion = currrentQuestion
@@ -56,6 +63,13 @@ console.log(data)
           </TouchableOpacity>          
         </View>
       )} 
+      <Text>COUNTER {counter}</Text>
+      <TouchableOpacity style={{marginTop:20}} onPress={() => dispatch(increment(1))}>
+            <Text>INCREMENT BUTTON</Text>
+      </TouchableOpacity>  
+      <TouchableOpacity style={{marginTop:20}} onPress={() => dispatch(decrement())}>
+            <Text>DECREMENT BUTTON</Text>
+      </TouchableOpacity>
     </View>
   );
 };
