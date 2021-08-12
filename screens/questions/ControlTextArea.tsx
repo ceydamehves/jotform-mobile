@@ -7,10 +7,14 @@ import { styles } from '../../styles/questionStyles';
 import { useState } from 'react';
 
 export default function ControlTextArea(props: any) {
-  const {c} = props
+  const {c} = props 
 
   const [text, changeText] = useState('');
 
+  const stringInputLong = new Array();
+  stringInputLong.push({text})
+  console.log(stringInputLong)
+  
     return(
     <View>
       <Video

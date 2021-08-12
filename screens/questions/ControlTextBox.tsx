@@ -10,6 +10,10 @@ export default function ControlTextBox(props: any) {
   const {c} = props
 
   const [text, changeText] = useState('');
+
+  const stringInputShort = new Array();
+  stringInputShort.push({text})
+  console.log(stringInputShort)
   
     return(
     <View>

@@ -28,8 +28,8 @@ export default function ControlCheckBox(props: any) {
   ]
 
   const [selectedOptions, onSelectionsChange] = useState([]);
-  var selectedArray = selectedOptions
-  console.log(selectedArray)
+  var selectedMultiple = selectedOptions
+  console.log(selectedMultiple)
 
     return(
     <View>
@@ -43,7 +43,7 @@ export default function ControlCheckBox(props: any) {
       <Text style={styles.title}>{c["text"]}.</Text>
       <SelectMultiple
             items={options}
-            selectedItems={selectedArray}
+            selectedItems={selectedMultiple}
             onSelectionsChange={onSelectionsChange}/>
     </View>
     )

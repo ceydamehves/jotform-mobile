@@ -18,8 +18,9 @@ export default function ControlRadio(props: any) {
   ]
 
   const [selectedOptions, onSelectionsChange] = useState([]);
-  var selectedArray = selectedOptions
-  console.log(selectedArray)
+  var selectedSingle = selectedOptions
+  console.log(selectedSingle)
+  
 
     return(
     <View>
@@ -33,9 +34,10 @@ export default function ControlRadio(props: any) {
       <Text style={styles.title}>{c["text"]}.</Text>
       <SelectMultiple
             items={options}
-            selectedItems={selectedArray}
+            selectedItems={selectedSingle}
             onSelectionsChange={onSelectionsChange} 
             maxSelect={1}/>
     </View>
     )
 };
+
