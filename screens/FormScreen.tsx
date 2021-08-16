@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Component} from 'react';
 import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import axios from 'axios';
@@ -9,17 +10,40 @@ import ControlTextBox from './questions/ControlTextBox';
 import ControlTextArea from './questions/ControlTextArea';
 import ControlCheckBox from './questions/ControlCheckBox';
 
-
-import { useSelector, useDispatch } from 'react-redux';
-import { increment,decrement } from './actions';
+import { connect } from "react-redux";
+import { getcontent } from "./actions/contentAction";
+/* import { useSelector, useDispatch } from 'react-redux';
+import { show } from './actions';
 
 const questionBuilders: {[index: string]: any} = {
     "control_radio": (c: any) =>  (<ControlRadio c={c}/>),
     "control_textbox": (c: any) => (<ControlTextBox c={c}/>),
     "control_textarea": (c: any) => (<ControlTextArea c={c}/>),
     "control_checkbox": (c: any) => (<ControlCheckBox c={c}/>)
+} */
+
+class FormScreen extends React.Component<any> {
+  componentDidMount() {
+    this.props.getcontent();
+  }
+  render() {
+    const { forms } = this.props.forms;
+    console.log(this.props.forms);
+
+    const test = JSON.stringify(forms)
+    return (
+      <Text>
+          {test}
+       </Text>
+    ); 
+  }
 }
 
+const mapStateToProps = (state) => ({ forms: state.forms });
+
+export default connect(mapStateToProps, { getcontent })(FormScreen);
+
+/* 
 export default function FirstQuestion( {navigation}: {navigation: any} ) {
 
   const [isLoading, setLoading] = useState(true);
@@ -73,5 +97,4 @@ const dispatch = useDispatch();
     </View>
   );
 };
-
-  
+ */

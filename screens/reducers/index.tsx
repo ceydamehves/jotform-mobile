@@ -1,7 +1,6 @@
-import counterReducer from "./counter";
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
+import contentReducer from "./contentReducer";
 
-const allReducers = combineReducers({
-    counter : counterReducer
+export default combineReducers({
+  forms: contentReducer
 });
-export default allReducers;
