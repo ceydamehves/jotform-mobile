@@ -10,7 +10,7 @@ export const getcontent = () => async (dispatch) => {
 
     dispatch({
       type: GET_CONTENT,
-      payload: res.data
+      payload: res.data.content
     });
   } catch (e) {
     dispatch({
