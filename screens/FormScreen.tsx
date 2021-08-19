@@ -47,15 +47,26 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
     setCurrentQuestion(tempCQuestion)
   }   
 
+  function submitButton(){
+   
+  }
+  
   return (
     <View style={{ flex: 1 }}>      
-       <View style={{ flex:1 }}>   
-       {(questionBuilders[forms['questions'][currrentQuestion.toString()]["type"]])(forms['questions'][currrentQuestion.toString()])}
-          <TouchableOpacity style={{marginTop:20}} onPress={nextQuestion}>
-            <Text>NEXT BUTTON</Text>
-          </TouchableOpacity>          
-        </View>
-         <Text>{test}</Text>     
+      <View style={{ flex:1 }}>   
+        {(questionBuilders[forms['questions'][currrentQuestion.toString()]["type"]])(forms['questions'][currrentQuestion.toString()])}
+        
+          {parseInt(Object.keys(forms['questions'])[Object.keys(forms['questions']).length - 1]) == (forms['questions'][currrentQuestion.toString()]["qid"]) ?(
+            <TouchableOpacity style={{marginTop:20}} onPress={submitButton}>
+              <Text> SUBMIT BUTTON </Text>
+            </TouchableOpacity>)
+            :(
+            <TouchableOpacity style={{marginTop:20}} onPress={nextQuestion}>
+              <Text> NEXT BUTTON </Text>
+            </TouchableOpacity>  
+          )}                  
+      </View>        
+        {/* <Text>{test}</Text>  */}    
     </View>
   );
 };
