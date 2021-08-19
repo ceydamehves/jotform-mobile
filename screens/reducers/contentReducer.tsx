@@ -1,7 +1,8 @@
-import { GET_CONTENT } from "../types";
+import { GET_CONTENT, ADD_ANSWERS } from "../types";
 
 const initialState = {
-  forms: [],
+  questions: [],
+  answers: [],
   loading: true
 };
 
@@ -10,7 +11,13 @@ export default function (state = initialState, action) {
     case GET_CONTENT:
       return {
         ...state,
-        forms: action.payload,
+        questions: action.payload,
+        loading: false
+      };
+      case ADD_ANSWERS:
+      return {
+        ...state,
+        answers: action.payload,
         loading: false
       };
     default:

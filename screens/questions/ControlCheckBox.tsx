@@ -5,20 +5,15 @@ import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 import { styles } from '../../styles/questionStyles'; 
 import SelectMultiple from 'react-native-select-multiple';
-import { useState } from 'react';
+
+import { addAnswers } from "../actions/contentAction";
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 
 export default function ControlCheckBox(props: any) {
   
   const {c} = props
-
-  /* var choiceCount: number = parseInt(c["spreadCols"]) 
-  var arr=[]
-  for (let x= 0; x<=choiceCount + 1; x++){   
-    //reach the variable from outside the loop.
-    arr.push(x);    
-  }
-   */
 
   const options = [    
     { label: c["options"].split('|')[0], value: '0' },   
@@ -29,7 +24,12 @@ export default function ControlCheckBox(props: any) {
 
   const [selectedOptions, onSelectionsChange] = useState([]);
   var selectedMultiple = selectedOptions
-  console.log(selectedMultiple)
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addAnswers(selectedOptions))
+  }, []);
+  console.log(addAnswers(selectedOptions))
 
     return(
     <View>

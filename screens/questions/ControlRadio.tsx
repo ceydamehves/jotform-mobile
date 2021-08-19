@@ -4,8 +4,10 @@ import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 import SelectMultiple from 'react-native-select-multiple';
 import { styles } from '../../styles/questionStyles'; 
-import { useState } from 'react';
 
+import { addAnswers } from "../actions/contentAction";
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 export default function ControlRadio(props: any) {
   
@@ -18,10 +20,14 @@ export default function ControlRadio(props: any) {
   ]
 
   const [selectedOptions, onSelectionsChange] = useState([]);
-  var selectedSingle = selectedOptions
-  console.log(selectedSingle)
   
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addAnswers(selectedOptions))
+  }, []);
+  console.log(addAnswers(selectedOptions))
+  
     return(
     <View>
       <Video
@@ -34,7 +40,7 @@ export default function ControlRadio(props: any) {
       <Text style={styles.title}>{c["text"]}.</Text>
       <SelectMultiple
             items={options}
-            selectedItems={selectedSingle}
+            selectedItems={selectedOptions}
             onSelectionsChange={onSelectionsChange} 
             maxSelect={1}/>
     </View>

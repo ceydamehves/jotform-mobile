@@ -4,16 +4,24 @@ import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 
 import { styles } from '../../styles/questionStyles'; 
-import { useState } from 'react';
+
+import { addAnswers } from "../actions/contentAction";
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 export default function ControlTextBox(props: any) {
   const {c} = props
 
-  const [text, changeText] = useState('');
+  const [shortText, changeText] = useState('');
 
   const stringInputShort = new Array();
-  stringInputShort.push({text})
-  console.log(stringInputShort)
+  stringInputShort.push({shortText})
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addAnswers({shortText}))
+  }, []);
+  console.log(addAnswers({shortText}))
   
     return(
     <View>

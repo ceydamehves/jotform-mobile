@@ -4,16 +4,24 @@ import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 
 import { styles } from '../../styles/questionStyles'; 
-import { useState } from 'react';
+
+import { addAnswers } from "../actions/contentAction";
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 export default function ControlTextArea(props: any) {
   const {c} = props 
 
-  const [text, changeText] = useState('');
+  const [longText, changeText] = useState('');
 
   const stringInputLong = new Array();
-  stringInputLong.push({text})
-  console.log(stringInputLong)
+  stringInputLong.push({longText})
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(addAnswers({longText}))
+  }, []);
+  console.log(addAnswers({longText}))
   
     return(
     <View>

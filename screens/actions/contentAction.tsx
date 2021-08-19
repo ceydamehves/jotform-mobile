@@ -1,4 +1,4 @@
-import { GET_CONTENT, CONTENT_ERROR } from "../types";
+import { GET_CONTENT, CONTENT_ERROR, ADD_ANSWERS } from "../types";
 import axios from "axios";
 import {apiKey} from '../../secret';
 
@@ -18,4 +18,11 @@ export const getcontent = () => async (dispatch) => {
       payload: console.log(e)
     });
   }
+};
+
+export const addAnswers = (answers) => {
+  return {
+      type: ADD_ANSWERS,
+      payload: answers
+  };
 };
