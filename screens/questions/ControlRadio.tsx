@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, TouchableOpacity} from 'react-native';
+
 import { Text, View } from '../../components/Themed';
 import { Video } from 'expo-av';
 import SelectMultiple from 'react-native-select-multiple';
@@ -7,26 +7,21 @@ import { styles } from '../../styles/questionStyles';
 
 import { addAnswers } from "../actions/contentAction";
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function ControlRadio(props: any) {
   
   const {c} = props
-
-
-  const options = [    
-    { label: c["options"].split('|')[0], value: '0' },   
-    { label: c["options"].split('|')[1], value: '1' }
-  ]
-
-  const [selectedOptions, onSelectionsChange] = useState([]);
-  
-
+  const options = c["options"].split("|").map((x) => ({"label": x, "value": x}))  
+  const [selectedOptions, onSelectionsChange] = useState([]);  
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(addAnswers(selectedOptions))
-  }, []);
-  console.log(addAnswers(selectedOptions))
+  
+  function changeText(choice){
+    
+    onSelectionsChange(choice)
+    var value = choice[0].value
+    dispatch(addAnswers({value, "qid":c.qid, "name":c.name}))
+  } 
   
     return(
     <View>
@@ -41,7 +36,7 @@ export default function ControlRadio(props: any) {
       <SelectMultiple
             items={options}
             selectedItems={selectedOptions}
-            onSelectionsChange={onSelectionsChange} 
+            onSelectionsChange={changeText} 
             maxSelect={1}/>
     </View>
     )
