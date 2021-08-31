@@ -11,7 +11,8 @@ import ControlCheckBox from './questions/ControlCheckBox';
 
 import { getcontent } from "./actions/contentAction";
 import { useSelector, useDispatch } from 'react-redux';
-
+import axios from "axios";
+import {apiKey} from '../secret';
 
 const questionBuilders: {[index: string]: any} = {
     "control_radio": (c: any) =>  (<ControlRadio c={c}/>),
@@ -30,7 +31,7 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
     dispatch(getcontent())
   }, []);
 
-  const test = JSON.stringify(forms) 
+  // const test = JSON.stringify(forms) 
 
   function nextQuestion(){
     var tempCQuestion = currrentQuestion
@@ -45,15 +46,42 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
       return
     }
     setCurrentQuestion(tempCQuestion)
-  }   
+  }     
 
-  function submitButton(){
-   
+  function submitButton(){      
+    var submission = new FormData()
+    Object.values(forms.answers).forEach((element: any) => {
+      
+      if(Array.isArray(element.value)){
+        element.value.forEach(el => {
+          submission.append(`submission[${element.qid}][]`, el)
+        });
+      }
+      else{
+        submission.append(`submission[${element.qid}]`, element.value)
+      }
+    });
+    console.log(submission)
+
+    axios({
+      url: `https://api.jotform.com/form/211803091239046/submissions?apiKey=${apiKey.jotform}`, 
+      method: 'post',
+      data: submission,
+    })
+    .then(function (response) {
+        // your action after success
+        console.log(response);
+    })
+    .catch(function (error) {
+       // your action on error success
+        console.log(error);
+    });     
   }
+
   
   return (
     <View style={{ flex: 1 }}>      
-      <View style={{ flex:1 }}>   
+      <View style={{ flex: 1 }}>   
         {(questionBuilders[forms['questions'][currrentQuestion.toString()]["type"]])(forms['questions'][currrentQuestion.toString()])}
         
           {parseInt(Object.keys(forms['questions'])[Object.keys(forms['questions']).length - 1]) == (forms['questions'][currrentQuestion.toString()]["qid"]) ?(
@@ -65,8 +93,7 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
               <Text> NEXT BUTTON </Text>
             </TouchableOpacity>  
           )}                  
-      </View>        
-        {/* <Text>{test}</Text>  */}    
+      </View>
     </View>
   );
 };
