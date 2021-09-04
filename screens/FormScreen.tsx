@@ -26,6 +26,8 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
   const forms = useSelector((state: any) => state.forms);
   const [currrentQuestion, setCurrentQuestion] = useState<number>(1);
 
+  const {loading} = useSelector((state: any) => state.forms);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getcontent())
@@ -80,7 +82,9 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
 
   
   return (
-    <View style={{ flex: 1 }}>      
+    <View style={{ flex: 1 }}> 
+    {loading ? <Text>Loading...</Text> : 
+      (     
       <View style={{ flex: 1 }}>   
         {(questionBuilders[forms['questions'][currrentQuestion.toString()]["type"]])(forms['questions'][currrentQuestion.toString()])}
         
@@ -94,6 +98,7 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
             </TouchableOpacity>  
           )}                  
       </View>
+      )}
     </View>
   );
 };
