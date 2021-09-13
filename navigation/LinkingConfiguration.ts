@@ -11,13 +11,15 @@ export default {
   config: {
     screens: {
       Root: {
-        screens: {
+        screens: {          
           TabOne: {
             screens: {
+              LoginScreen: 'login',
               TabOneScreen: 'one',
               FormScreen : 'form'
             },
           },
+          
           TabTwo: {
             screens: {
               TabTwoScreen: 'two',
