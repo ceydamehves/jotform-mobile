@@ -79,13 +79,14 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
         console.log(error);
     });     
   }
-
   
   return (
     <View style={{ flex: 1 }}> 
     {loading ? <Text>Loading...</Text> : 
       (     
       <View style={{ flex: 1 }}>   
+      <Text style={styles.step}> Step {forms["questions"][currrentQuestion.toString()]["order"]} of {parseInt(Object.keys(forms['questions'])[Object.keys(forms['questions']).length - 2])}</Text>
+        
         {(questionBuilders[forms['questions'][currrentQuestion.toString()]["type"]])(forms['questions'][currrentQuestion.toString()])}
         
           {parseInt(Object.keys(forms['questions'])[Object.keys(forms['questions']).length - 1]) == (forms['questions'][currrentQuestion.toString()]["qid"]) ?(

@@ -72,7 +72,13 @@ export const styles = StyleSheet.create({
       },
       answerContainer:{
         flex: 2, 
-        marginTop: 350
+        marginTop: 300
+      },
+      step:{
+        alignSelf:'center', 
+        marginTop: 5, 
+        marginBottom: 5, 
+        color: '#0099FF'
       },
       backgroundVideo: {
         height: height * 0.7,
