@@ -24,21 +24,26 @@ export default function ControlRadio(props: any) {
   } 
   
     return(
-    <View>
-      <Video
-      source={{ uri: c["description"].toString() }} 
-      shouldPlay
-      isLooping
-      resizeMode="cover"
-      style={styles.backgroundVideo}
-      />
-      <Text style={styles.title}>{c["text"]}.</Text>
-      <SelectMultiple
-            items={options}
-            selectedItems={selectedOptions}
-            onSelectionsChange={changeText} 
-            maxSelect={1}/>
-    </View>
+      <View style={styles.questionContainer}>
+        <View style={{flex: 1}}>
+          <Video
+          source={{ uri: c["description"].toString() }} 
+          shouldPlay
+          isLooping
+          resizeMode="cover"
+          style={styles.backgroundVideo}
+          />
+        </View>
+        <View style={styles.answerContainer}>
+          <Text style={styles.questionTitle}>{c["text"]}.</Text>
+          <SelectMultiple
+                items={options}
+                selectedItems={selectedOptions}
+                onSelectionsChange={changeText} 
+                maxSelect={1}
+                style={styles.controlRadio}/>
+        </View>
+      </View>
     )
 };
 

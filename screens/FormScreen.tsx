@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { useEffect, useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { Text, View } from '../components/Themed';
 
 import ControlRadio from './questions/ControlRadio';
@@ -13,6 +13,7 @@ import { getcontent } from "./actions/contentAction";
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import {apiKey} from '../secret';
+import { styles } from '../styles/questionStyles';
 
 const questionBuilders: {[index: string]: any} = {
     "control_radio": (c: any) =>  (<ControlRadio c={c}/>),
@@ -34,7 +35,6 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
   }, []);
 
   // const test = JSON.stringify(forms) 
-
   function nextQuestion(){
     var tempCQuestion = currrentQuestion
     var lastQuestion: number = parseInt(Object.keys(forms['questions'])[Object.keys(forms['questions']).length - 1])
@@ -89,12 +89,14 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
         {(questionBuilders[forms['questions'][currrentQuestion.toString()]["type"]])(forms['questions'][currrentQuestion.toString()])}
         
           {parseInt(Object.keys(forms['questions'])[Object.keys(forms['questions']).length - 1]) == (forms['questions'][currrentQuestion.toString()]["qid"]) ?(
-            <TouchableOpacity style={{marginTop:20}} onPress={submitButton}>
-              <Text> SUBMIT BUTTON </Text>
+            <TouchableOpacity style={styles.nextButton} onPress={submitButton}>
+              <Image style={styles.buttonImage}
+                        source={require ('../assets/images/tick.png')}/>
             </TouchableOpacity>)
             :(
-            <TouchableOpacity style={{marginTop:20}} onPress={nextQuestion}>
-              <Text> NEXT BUTTON </Text>
+            <TouchableOpacity style={styles.nextButton} onPress={nextQuestion}>
+              <Image style={styles.buttonImage}
+                        source={require ('../assets/images/next.png')}/>
             </TouchableOpacity>  
           )}                  
       </View>

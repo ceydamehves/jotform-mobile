@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import { FlatList, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import { Text, View } from '../components/Themed';
+import { styles } from '../styles/questionStyles'; 
 
 import {apiKey} from '../secret';
 
@@ -24,26 +25,19 @@ export default function TabOneScreen( {navigation}: {navigation: any} ) {
     <View style={{ flex: 1 }}>
       {isLoading ? <Text>Loading...</Text> : 
       (
+        <View>
+        <Text style={styles.description}>{data["content"]["username"]}'s Forms.</Text>
         <FlatList
           data={["content"]}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigation.navigate('FormScreen')}> 
-              <Text style={styles.item}>{data[item].title}</Text>
+            <TouchableOpacity style={styles.flatListItem}
+                              onPress={() => navigation.navigate('FormScreen')}> 
+              <Text style={styles.flatListText}>{data[item].title}</Text>
             </TouchableOpacity>
           )}
           />
+        </View>
       )} 
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  item:{
-    alignSelf:'center',
-    marginTop:20,
-    marginHorizontal:10,
-    padding:30,
-    backgroundColor:'yellow',
-    fontSize:20
-  },
-})
