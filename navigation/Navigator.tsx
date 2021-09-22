@@ -31,14 +31,14 @@ function BottomTabNavigator() {
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="Settings"
         component={SettingsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="settings" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -53,12 +53,16 @@ export default function Navigator() {
       <Sign.Screen
         name="SignUpScreen"
         component={SignUpScreen}
-        options={{ headerTitle: 'SignUp' }}
+        options={{ headerTitle: 'Sign Up',
+                   headerTintColor: '#0099FF',
+                   headerTitleAlign: 'center' }}
       />
       <Sign.Screen
         name="SignInScreen"
         component={SignInScreen}
-        options={{ headerTitle: 'SignIn' }}
+        options={{ headerTitle: 'Sign In',
+                   headerTintColor: '#0099FF',
+                   headerTitleAlign: 'center' }}
       />
       <Sign.Screen
         name="HomeScreen"
@@ -81,12 +85,16 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: 'Welcome!',
+                   headerLeft: null,
+                   headerTintColor: '#0099FF',
+                   headerTitleStyle: {fontSize: 28}}}
       />
       <HomeStack.Screen
         name="FormScreen"
         component={FormScreen}
-        options={{ headerTitle: '' }}
+        options={{ headerTitle: 'Questions',
+                   headerTintColor: '#0099FF', }}
       />
     </HomeStack.Navigator>
   );
@@ -100,7 +108,10 @@ function SettingsNavigator() {
       <SettingsStack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: 'Settings',
+                   headerLeft: null,
+                   headerTintColor: '#0099FF',
+                   headerTitleAlign: 'center' }}
       />
     </SettingsStack.Navigator>
   );
