@@ -9,7 +9,7 @@ import {apiKey} from '../secret';
 import { useDispatch, useSelector } from 'react-redux';
 import { styles } from '../styles/questionStyles';
 
-export default function loginScreen( {navigation}: {navigation: any} ) {
+export default function SignUpScreen( {navigation}: {navigation: any} ) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
