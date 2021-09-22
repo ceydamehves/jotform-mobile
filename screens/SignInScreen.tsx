@@ -49,7 +49,10 @@ export default function loginScreen( {navigation}: {navigation: any} ) {
 
     return (
       <View style={{flex:1}}>
-        <View style={{marginTop:150}}>
+        <Image
+          style={styles.logo}
+          source={require ('../assets/images/Logo.png')}/>
+        <View style={{marginTop: 60}}>
         <Text style={styles.inputTitle}>Name or e-mail</Text>
         <TextInput
           style={styles.loginInput}

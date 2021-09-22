@@ -78,6 +78,7 @@ export default function FormScreen( {navigation}: {navigation: any} ) {
        // your action on error success
         console.log(error);
     });     
+    alert("Your answers submitted.")
   }
   
   return (
