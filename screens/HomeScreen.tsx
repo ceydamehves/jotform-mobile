@@ -8,7 +8,7 @@ import { styles } from '../styles/questionStyles';
 import {apiKey} from '../secret';
 
 
-export default function TabOneScreen( {navigation}: {navigation: any} ) {
+export default function HomeScreen( {navigation}: {navigation: any} ) {
 
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<{[index: string]:any}>({});

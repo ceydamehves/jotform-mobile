@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
 
-//LoginScreen
+//SignInScreen
       logo: {
        alignSelf: 'center',
        marginTop: 50,

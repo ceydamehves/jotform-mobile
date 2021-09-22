@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { TextInput, TouchableOpacity, Alert } from 'react-native';
+import { TextInput, TouchableOpacity, Image } from 'react-native';
 import { Text, View } from '../components/Themed';
 
 import { useState } from 'react';
 
 import axios from "axios";
 import {apiKey} from '../secret';
-import { signIn } from './actions/loginAction';
-import { useDispatch, useSelector } from 'react-redux';
+import { styles } from '../styles/questionStyles';
 
 export default function loginScreen( {navigation}: {navigation: any} ) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
-    const login = useSelector((state: any) => state.login);
+    //const login = useSelector((state: any) => state.login);
     
     function loginButton(){      
       var submission = new FormData()
@@ -32,7 +31,7 @@ export default function loginScreen( {navigation}: {navigation: any} ) {
           // your action after success
           //console.log(dispatch(signIn("response.data.message:::"+response.data.message)));
           if (response.data.message == "success"){
-            navigation.navigate("TabOneScreen")
+            navigation.navigate("HomeScreen")
           }
           else{
             (alert("That email and password combination is incorrect."))
@@ -44,26 +43,40 @@ export default function loginScreen( {navigation}: {navigation: any} ) {
           console.log(error);
       });     
       
-      //{(login.user.payload) == "success" ?(navigation.navigate(TabOneScreen))):(alert("check your username or password"))}
+      //{(login.user.payload) == "success" ?(navigation.navigate(HomeScreen))):(alert("check your username or password"))}
 
     }
 
     return (
-      <View>
+      <View style={{flex:1}}>
+        <View style={{marginTop:150}}>
+        <Text style={styles.inputTitle}>Name or e-mail</Text>
         <TextInput
-          placeholder="Username"
+          style={styles.loginInput}
           value={username}
           onChangeText={setUsername}
         />
+        <View style={{flexDirection:'row'}}>
+          <Text style={styles.inputTitle}>Password</Text>
+          <Text style={{marginTop:20, marginLeft: 130, color:'rgba(40, 47, 66, 0.5)'}}>Forgot Password?</Text>
+        </View>        
         <TextInput
-          placeholder="Password"
+          style={styles.loginInput}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />      
-        <TouchableOpacity onPress={loginButton}>
-          <Text>LOGIN</Text>          
-        </TouchableOpacity>          
+        <TouchableOpacity style={styles.loginButton}
+                          onPress={loginButton}>
+          <Text style={styles.buttonTitle}>Sign In</Text>          
+        </TouchableOpacity> 
+        <View style={{flexDirection:'row', justifyContent:'center', marginTop:25}}>          
+          <Text style={{fontSize:16}}>Dont't you have an account?</Text> 
+          <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
+            <Text style={{marginLeft:15, color:'#0099FF', fontSize:16}}>Sign Up</Text>
+          </TouchableOpacity>            
+        </View>
+      </View>        
       </View>
     );
   }
