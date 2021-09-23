@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "jotform-project",
+    "name": "VideoAsk JotForm",
     "slug": "jotform-project",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/appicon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/appicon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,6 +22,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "ceydamehves.videoask",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
