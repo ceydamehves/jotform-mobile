@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 150,
         width: width * 0.9,
-        height: 90,
+        height: 70,
         borderRadius: 20,
         borderWidth: 1,
         borderColor: 'rgba(227, 229, 245, 1)'
